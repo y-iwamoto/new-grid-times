@@ -13,6 +13,8 @@ import SecondaryStory from '../SecondaryStory';
 import OpinionStory from '../OpinionStory';
 import Advertisement from '../Advertisement';
 
+import { QUERIES } from '../../constants';
+
 const MainStoryGrid = () => {
   return (
     <Wrapper>
@@ -30,11 +32,11 @@ const MainStoryGrid = () => {
 
       <OpinionSection>
         <SectionTitle>Opinion</SectionTitle>
-        <StoryList>
+        <OpinionStoryList>
           {OPINION_STORIES.map((story, index) => (
             <OpinionStory key={story.id} {...story} />
           ))}
-        </StoryList>
+        </OpinionStoryList>
       </OpinionSection>
 
       <AdvertisementSection>
@@ -66,6 +68,16 @@ const SecondaryStorySection = styled.section`
 const StoryList = styled.div`
   display: flex;
   flex-direction: column;
+  gap: 32px;
+`;
+
+const OpinionStoryList = styled.div`
+  display: flex;
+  flex-direction: column;
+  @media ${QUERIES.tabletOnly} {
+    flex-direction: row;
+  }
+  gap: 32px;
 `;
 
 const OpinionSection = styled.section`

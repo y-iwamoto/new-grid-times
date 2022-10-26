@@ -1,23 +1,59 @@
 import React from 'react';
 import styled from 'styled-components/macro';
+import { QUERIES } from '../../constants';
 
 const OpinionStory = ({ id, title, author, avatar }) => {
   return (
-    <a href={`/story/${id}`}>
+    <Anchor href={`/story/${id}`}>
       <Wrapper>
         <Avatar alt="" src={avatar} />
-        <div>
+        <SubWrapper>
           <AuthorName>{author}</AuthorName>
           <ArticleTitle>{title}</ArticleTitle>
-        </div>
+        </SubWrapper>
       </Wrapper>
-    </a>
+    </Anchor>
   );
 };
 
+const Anchor = styled.a`
+  position: relative;
+  &:not(:last-child)::after {
+    position: absolute;
+    content: " ";
+    display: block;
+    border-bottom: 1px solid var(--color-gray-300);
+    bottom: -16px;
+    width: 100%;
+    @media ${QUERIES.tabletOnly} {
+      border-bottom: 0px;
+    }
+  }
+  @media ${QUERIES.tabletOnly} {
+    width: 25%;
+  }
+`
+
 const Wrapper = styled.article`
   color: var(--color-gray-900);
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  gap: 21px;
+  @media ${QUERIES.tabletOnly} {
+    flex-direction: column;
+    align-items: flex-start
+  }
 `;
+
+const SubWrapper = styled.div`
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+  @media ${QUERIES.tabletOnly} {
+    display: block;
+  }
+`
 
 const Avatar = styled.img`
   display: block;
