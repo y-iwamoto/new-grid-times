@@ -4,6 +4,7 @@ import styled from 'styled-components/macro';
 import MaxWidthWrapper from '../MaxWidthWrapper';
 
 import VisuallyHidden from '../VisuallyHidden';
+import { QUERIES } from '../../constants';
 
 const Footer = () => {
   return (
@@ -39,7 +40,7 @@ const Footer = () => {
           </Social>
         </TopRow>
         <MainNavArea>
-          <nav>
+          <Nav>
             <MainNavHeading>Discover Content</MainNavHeading>
             <MainNavList>
               <li>
@@ -58,8 +59,8 @@ const Footer = () => {
                 <a href="/oped">Opinion and Editorial</a>
               </li>
             </MainNavList>
-          </nav>
-          <nav>
+          </Nav>
+          <Nav>
             <MainNavHeading>Regional Websites</MainNavHeading>
             <MainNavList>
               <li>
@@ -78,8 +79,8 @@ const Footer = () => {
                 <a href="/au">New Grid Australia</a>
               </li>
             </MainNavList>
-          </nav>
-          <nav>
+          </Nav>
+          <Nav>
             <MainNavHeading>Careers</MainNavHeading>
             <MainNavList>
               <li>
@@ -92,8 +93,8 @@ const Footer = () => {
                 <a href="/culture">Company Culture</a>
               </li>
             </MainNavList>
-          </nav>
-          <nav>
+          </Nav>
+          <Nav>
             <MainNavHeading>Legal and Privacy</MainNavHeading>
             <MainNavList>
               <li>
@@ -112,7 +113,7 @@ const Footer = () => {
                 <a href="/tos">Terms and Conditions</a>
               </li>
             </MainNavList>
-          </nav>
+          </Nav>
         </MainNavArea>
       </MaxWidthWrapper>
       <SubfooterWrapper>
@@ -139,6 +140,13 @@ const TopRow = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  @media ${QUERIES.tabletAndUp} {
+    flex-direction: row;
+    justify-content: center;
+  }
+  @media ${QUERIES.laptopAndUp} {
+    justify-content: flex-end;
+  }
   gap: 16px;
   color: var(--color-gray-300);
   font-size: 0.875rem;
@@ -149,6 +157,7 @@ const TopRow = styled.div`
 const Social = styled.div`
   display: flex;
   gap: 24px;
+  flex-direction: row-reverse;
 
   svg {
     display: block;
@@ -170,7 +179,22 @@ const MainNavArea = styled.div`
   gap: 32px;
   padding: 32px 0 48px;
   text-align: center;
+  @media ${QUERIES.tabletAndUp} {
+    flex-direction: row;
+    flex-wrap: wrap;
+    text-align: left;
+  }
 `;
+
+const Nav = styled.nav`
+  @media ${QUERIES.tabletAndUp} {
+    width: 30%;
+  }
+  @media ${QUERIES.laptopAndUp} {
+    width: 21%;
+  }
+  
+`
 
 const MainNavHeading = styled.h2`
   font-size: 1.125rem;
@@ -196,6 +220,9 @@ const Subfooter = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  @media ${QUERIES.laptopAndUp} {
+    align-items: flex-start;
+  }
 `;
 
 const Logo = styled.a`
